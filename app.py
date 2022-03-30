@@ -1,3 +1,4 @@
+import flask
 from flask import Flask,render_template,request
 
 app = Flask(__name__)
@@ -30,11 +31,12 @@ def main_page():
                 return 'Unsafe'
 
         if getReport(request.form.get('url')) == 'safe':
-            message = 'Это безопасный сайт'
-            return render_template('mainpage.html', message=message)
+
+            flask.flash('Сайт не безопасен')
+            flask.get_flashed_messages(with_categories=False, category_filter=[])
         else:
-            message = 'Сайт не безопасен'
-            return render_template('mainpage.html', message=message)
+            flask.flash('Сайт не безопасен')
+            flask.get_flashed_messages(with_categories=False,category_filter=[])
     else:
         return render_template('mainpage.html')
 
