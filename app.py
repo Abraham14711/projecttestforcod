@@ -1,7 +1,9 @@
 import flask
-from flask import Flask,render_template,request
+from flask import Flask,render_template,request,flash
 
 app = Flask(__name__)
+
+app.config['SECRET_KEY']='nfjvbsuvhesbvawmih124'
 
 @app.route('/',methods=['POST','GET'])
 def main_page():
@@ -31,12 +33,9 @@ def main_page():
                 return 'Unsafe'
 
         if getReport(request.form.get('url')) == 'safe':
-
-            flask.flash('Сайт не безопасен')
-            flask.get_flashed_messages(with_categories=False, category_filter=[])
+            flash('Сайт не безопасен')
         else:
-            flask.flash('Сайт не безопасен')
-            flask.get_flashed_messages(with_categories=False,category_filter=[])
+            flash('Сайт не безопасен')
     else:
         return render_template('mainpage.html')
 
