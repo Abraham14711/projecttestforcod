@@ -30,7 +30,7 @@
 </nav>
   </head>
   <body>
-  <form class="form-floating" id="checker"  method="post" onsubmit="" style="margin: 70px">
+  <form action="{{ url_for('handle_data') }}" class="form-floating" id="checker"  method="post" onsubmit="" style="margin: 70px">
 		<div ><input type="text" name="url"  value="http://" style="width:100%; height: 45px"></div>
 		<div ><input type="submit"  class="btn btn-primary"  src=""></div>
   </form>
