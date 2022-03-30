@@ -36,8 +36,8 @@ def main_page():
             else:
                 message='Сайт не безопасен'
                 return render_template('mainpage.html',message=message)
-    except:pass
-    return render_template('mainpage.html')
+    except:
+        return render_template('mainpage.html')
 
 @app.route('/vulnerabilities')
 def contacts():
