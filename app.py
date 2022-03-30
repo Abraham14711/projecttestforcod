@@ -33,7 +33,7 @@ def main_page():
                 return 'Unsafe'
 
         if getReport(request.form.get('url')) == 'safe':
-            flash('Сайт не безопасен')
+            flash('Сайт безопасен')
         else:
             flash('Сайт не безопасен')
     else:
