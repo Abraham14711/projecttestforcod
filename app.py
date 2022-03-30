@@ -1,7 +1,8 @@
-import flask
-from flask import Flask,render_template,request
+from flask import Flask,render_template,request,flash
 
 app = Flask(__name__)
+
+app.config['SECRET_KEY'] = 'fdgdfgdfggf786hfg6hfg6h7f'
 
 @app.route('/',methods=['POST','GET'])
 def main_page():
@@ -31,14 +32,12 @@ def main_page():
                 return 'Unsafe'
 
         if getReport(request.form.get('url')) == 'safe':
-            return render_template('successmainpage.html')
+            flash('Сообщение отправлено', category='success')
         else:
-            return render_template('dangerousmainpage.html')
+            flash('Ошибка отправки', category='error')
     else:
         return render_template('mainpage.html')
 
-
-    
 @app.route('/vulnerabilities')
 def contacts():
     return render_template('vulnerabilities.html')
