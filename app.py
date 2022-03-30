@@ -8,7 +8,8 @@ def main_page():
 
 @app.route('/vulnerabilities')
 def contacts():
-    return render_template('vulnerabilities.html')
+    message='Тест!!'
+    return render_template('vulnerabilities.html',message=message)
 
 @app.route('/antiviruses')
 def new_things():
