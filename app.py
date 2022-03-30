@@ -37,74 +37,7 @@ def main_page():
     else:
         return render_template('mainpage.html')
 
-@app.route('/successmainpage',methods=['POST','GET'])
-def main_page1():
-    if request.method=='POST':
-        import re
-        import urllib.parse
-        import urllib.request
-        import bs4
-        def getReport(myurl):
-            try:
-                reponse = urllib.request.Request(myurl)
-                html = urllib.request.urlopen(reponse).read().decode("utf-8")
-                soup = bs4.BeautifulSoup(html, 'html.parser')
-                pattern = r'http://v.virscan.org/\w+'
-                vLinks = soup.find_all('a', href=re.compile(pattern))
-                if len(vLinks) == 0:
-                    return 'safe'
-                else:
-                    for vlink in vLinks:
-                        url3 = urllib.parse.quote(vlink['href'])
-                        url3 = url3.replace('http%3A', 'http:')
-                        if vlink.has_attr('alt'):
-                            return 'Unsafe'
-                        else:
-                            return 'safe'
-            except:
-                return 'Unsafe'
 
-        if getReport(request.form.get('url')) == 'safe':
-            return render_template('successmainpage.html')
-        else:
-            return render_template('dangerousmainpage.html')
-    else:
-        return render_template('mainpage.html')
-
-@app.route('/dangerousmainpage',methods=['POST','GET'])
-def main_page():
-    if request.method=='POST':
-        import re
-        import urllib.parse
-        import urllib.request
-        import bs4
-        def getReport(myurl):
-            try:
-                reponse = urllib.request.Request(myurl)
-                html = urllib.request.urlopen(reponse).read().decode("utf-8")
-                soup = bs4.BeautifulSoup(html, 'html.parser')
-                pattern = r'http://v.virscan.org/\w+'
-                vLinks = soup.find_all('a', href=re.compile(pattern))
-                if len(vLinks) == 0:
-                    return 'safe'
-                else:
-                    for vlink in vLinks:
-                        url3 = urllib.parse.quote(vlink['href'])
-                        url3 = url3.replace('http%3A', 'http:')
-                        if vlink.has_attr('alt'):
-                            return 'Unsafe'
-                        else:
-                            return 'safe'
-            except:
-                return 'Unsafe'
-
-        if getReport(request.form.get('url')) == 'safe':
-            return render_template('successmainpage.html')
-        else:
-            return render_template('dangerousmainpage.html')
-    else:
-        return render_template('mainpage.html')
-    
     
 @app.route('/vulnerabilities')
 def contacts():
