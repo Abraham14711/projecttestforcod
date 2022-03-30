@@ -2,11 +2,11 @@ from flask import Flask,render_template,request
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/',m)
 def main_page():
     return render_template('mainpage.html')
-@app.route('/handle_data',methods=['POST'])
-def post():
+
+
     import re
     import urllib.parse
     import urllib.request
